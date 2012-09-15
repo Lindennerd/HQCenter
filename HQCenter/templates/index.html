@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+	<div class="row">
+		<div class="span3">
+			<div class="page-header">
+				<h3>Sobre nós:</h3>
+			</div>
+            <ul class="nav nav-tabs nav-stacked">
+              <li><a href="#">Quem Somos</a></li>
+              <li><a href="#">Contato</a></li>
+              <li><a href="#">Participe</a></li>
+            </ul>
+		</div>
+		<div class="span9">
+			<ul id="myTab" class="nav nav-tabs">
+			  <li class=""><a href="#minhas" data-toggle="tab">Minhas Comic's</a></li>
+			  <li class=""><a href="#todas" data-toggle="tab">Todas Comic's</a></li>
+			  <li class=""><a href="#recentes" data-toggle="tab">Mais Recentes</a></li>
+			  <li class=""><a href="#top_coment" data-toggle="tab">Mais Comentadas</a></li>
+			  <li class=""><a href="#Add" data-toggle="tab">Adicionar Comic</a></li>
+			</ul>
+			<div id="myTabContent" class="tab-content">
+			  <div class="tab-pane fade active in" id="minhas">
+			  	<div>
+			  		<table class="table table-striped">
+			  			<thead>
+			  				<tr>
+			  					<th>Nome</th>
+			  					<th>Autor</th>
+			  					<th>Desenhista</th>
+			  					<th>Ano</th>
+			  					<th>Publicadora</th>
+			  				</tr>
+			  			</thead>
+			  			<tbody>
+			  				{% if user.is_authenticated %}
+							  	{%for c in MyComics %}
+							  		{% include 'comic.html' %}
+							  		{% empty %}
+							  			<div class="alert alert-error">
+							  				Sem Comics a mostrar
+							  			</div>
+							  	{% endfor %}
+			  				{% else %}
+			  					{% include 'login_required.html' %}
+			  				{% endif %}
+			  			</tbody>
+			  		</table>
+			  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="todas">
+			  	  	<div>
+			  	  		<table class="table table-striped">
+			  	  			<thead>
+			  	  				<tr>
+			  	  					<th>Nome</th>
+			  	  					<th>Autor</th>
+			  	  					<th>Desenhista</th>
+			  	  					<th>Ano</th>
+			  	  					<th>Publicadora</th>
+			  	  				</tr>
+			  	  			</thead>
+			  	  			<tbody>
+			  				  	{%for c in AllComics %}
+			  				  		{% include 'comic.html' %}
+			  				  		{% empty %}
+			  				  			<div class="alert alert-error">
+			  				  				Sem Comics a mostrar
+			  				  			</div>
+			  				  	{% endfor %}
+			  	  			</tbody>
+			  	  		</table>
+			  	  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="recentes">
+			  	  	<div>
+			  	  		<table class="table table-striped">
+			  	  			<thead>
+			  	  				<tr>
+			  	  					<th>Nome</th>
+			  	  					<th>Autor</th>
+			  	  					<th>Desenhista</th>
+			  	  					<th>Ano</th>
+			  	  					<th>Publicadora</th>
+			  	  				</tr>
+			  	  			</thead>
+			  	  			<tbody>
+			  				  	{%for c in RecentComics %}
+			  				  		{% include 'comic.html' %}
+			  				  		{% empty %}
+			  				  			<div class="alert alert-error">
+			  				  				Sem Comics a mostrar
+			  				  			</div>
+			  				  	{% endfor %}
+			  	  			</tbody>
+			  	  		</table>
+			  	  	</div>
+			  </div>
+			  <div class="tab-pane fade" id="top_coment">Top Coments</div>
+			  <div class="tab-pane fade" id="Add">
+			  	{% ifequal form 0%}
+			  		{% include 'login_required.html' %}
+			  	{% else %}
+			  		{% include 'crud/create_comic.html'%}
+			  	{% endifequal %}
+			  </div>
+			</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

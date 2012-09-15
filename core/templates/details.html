@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load comments %}
+
+{% block corpo %}
+<div class="row">
+	<div class="span4">
+		<a href="" class="thumbnail">
+			<img src="/static/images/sample.png" alt>
+		</a>
+	</div>
+	<div class="span8">
+			<div class="page-header"><h2>{{comic.name}}</h2></div>
+			{% ifequal user.pk comic.owner.pk%}
+			<a href="{% url update_comic comic.pk %}">
+				<button class="btn btn-success"> Editar</button>
+			</a>
+			<a href="{% url delete_comic comic.pk %}">
+				<button class="btn btn-danger"> Deletar</button>
+			</a>
+			{% endifequal %}
+		<div>
+			<dl class="dl-horizontal">
+				<dt>Ano</dt>
+				<dd>{{comic.year}}</dd>
+				<dt>Autor</dt>
+				<dd>{{comic.author}}</dd>
+				<dt>Publicadora</dt>
+				<dd>{{comic.publisher.name}}</dd>
+				<dt>Descrição</dt>
+				<dd>{{comic.description}}</dd>
+			</dl>
+		</div>
+		{% get_comment_list for comic as comentarios %}
+		{% for comentario in comentarios %}
+			<blockquote>
+			<div class="bs-docs-example">
+				  <strong>Comentário de:</strong> {{ comentario.name }}<br/>
+				  {% if comentario.url %}URL: {{ comentario.url }}{% endif %}<br/>
+				  {{ comentario.comment|linebreaks|truncatewords:10 }}
+			  <hr/>
+			</div>
+		</blockquote>
+		{% endfor %}
+		<h3> Comenta ai Nerd </h3>
+		{% if user.is_authenticated %}
+			{% render_comment_form for comic %}
+		{% else %}
+			{% include 'login_required.html' %}
+		{% endif %}
+	</div>
+</div>
+{% endblock %}

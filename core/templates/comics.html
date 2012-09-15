@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+<div class="page-header">
+	<h2>
+		Resultados de sua Pesquisa
+	</h2>
+</div>
+	<div class="row">
+		<div class="span2">
+		</div>
+		<div class="span10">
+			<table class="table">
+				<thead>
+	  				<tr>
+	  					<th>Nome</th>
+	  					<th>Autor</th>
+	  					<th>Desenhista</th>
+	  					<th>Ano</th>
+	  					<th>Publicadora</th>
+	  				</tr>
+				</thead>
+				<tbody>
+					{% for c in comics %}
+						{% include 'comic.html' %}
+					{%empty%}
+						<div class="alert">Sua pesquisa não retornou Resultados</div>
+					{% endfor %}
+				</tbody>	
+			</table>
+		</div>
+	</div>
+{% endblock %}

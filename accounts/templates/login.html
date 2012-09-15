@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block corpo %}
+<div class="page-header" style="margin-left: 200px">
+	<h1>Login</h1>
+	<small><p>Informe usuario e senha</p></small>
+</div>
+<div style="margin-left: 200px">
+	<div class="span6">
+		<form method="POST" class="form-hotizontal">
+			{% include 'form.html' %}
+			<div class="form-actions">
+				<button type="submit" class="btn btn-primary">Entrar</button>
+			</div>
+		</form>
+	</div>
+</div>
+{% endblock %}
