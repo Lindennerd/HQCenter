@@ -5,7 +5,7 @@
 <div class="row">
 	<div class="span4">
 		<a href="" class="thumbnail">
-			<img src="/static/images/sample.png" alt>
+			<img src="{{image}}" alt>
 		</a>
 	</div>
 	<div class="span8">
@@ -28,6 +28,8 @@
 				<dd>{{comic.publisher.name}}</dd>
 				<dt>Descrição</dt>
 				<dd>{{comic.description}}</dd>
+				<dt>Link</dt>
+				<dd><a href="{{comic.link}}">{{comic.link}}</a></dd>
 			</dl>
 		</div>
 		{% get_comment_list for comic as comentarios %}

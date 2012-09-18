@@ -126,6 +126,11 @@ INSTALLED_APPS = (
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
 
+panini = '/static/images/panini.jpg'
+marvel = '/static/images/marvel.jpg'
+dc_comics = '/static/images/dc_comics.png'
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.

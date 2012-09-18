@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
 
 {% block corpo %}
-<div class="page-header" style="margin-left: 200px">
-	<h1>Login</h1>
-	<small><p>Informe usuario e senha</p></small>
-</div>
-<div style="margin-left: 200px">
-	<div class="span6">
-		<form method="POST" class="form-hotizontal">
-			{% include 'form.html' %}
-			<div class="form-actions">
-				<button type="submit" class="btn btn-primary">Entrar</button>
+<div class="row">
+	<div class="span10">
+		<div style="margin-left: 20%">
+			<div class="page-header">
+				<h1>Login</h1>
+				<small><p>Informe usuario e senha</p></small>
 			</div>
-		</form>
+			<form method="POST" class="form-hotizontal">
+				{% include 'form.html' %}
+				<div class="form-actions">
+					<button type="submit" class="btn btn-primary">Entrar</button>
+				</div>
+			</form>
+		</div>
+	</div>
+	<div class="span2">
+		<h3>Não é cadastrado?</h3><br/>
+		<a href="{% url signup %}">
+			<b>Então Clica Aqui, Manolo!</b>
+		</a>
 	</div>
 </div>
 {% endblock %}

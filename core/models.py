@@ -11,6 +11,7 @@ class comic(models.Model):
 	designer = models.CharField(verbose_name=u'Desenhista Principal', max_length=250)
 	publisher = models.ForeignKey('publisher', verbose_name=u'Publicadora')
 	owner = models.ForeignKey(User, verbose_name=u'Dono')
+	link = models.CharField(verbose_name=u'Link', max_length=200)
 	exclude = models.BooleanField(default=False)
 
 	class Meta:

@@ -4,6 +4,7 @@ from core.forms import comicForm, comentForm
 from core.forms import comicForm
 from django.template import RequestContext
 from datetime import date
+from HQCenter import settings
 
 
 def home(request):
@@ -61,12 +62,16 @@ def details(request, id):
             formComent.save()
             return redirect('core.views.home')
     else:
+        image = ""
+        if comic.objects.filter(publisher__name="Marvel"):
+            image = settings.marvel
+        elif comic.objects.filter(publisher__name="DC Comics"):
+            image = settings.dc_comics
+        elif comic.objects.filter(publisher__name="Panini"):
+            image = settings.panini
         context ={ 
             'comic' : get_object_or_404(comic, id=id),
+            'image' : image,
             'form' : form
         }
     return render(request, 'details.html', context)
-    RequestContext ={ 
-        'comic' : get_object_or_404(comic, id=id),
-    }
-    return render(request, 'details.html', RequestContext)
