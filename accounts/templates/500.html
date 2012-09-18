@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block corpo %}
+	<div class="row">
+		<div class="span3">
+			<img src="/static/images/its_a_trap.gif">
+		</div>
+		<div class="span9">
+			<div class="hero-unit">
+				<h1>
+					Hey, Alto lá!	
+				</h1>
+			</div>
+				{% include 'login_required.html' %}
+		</div>
+	</div>
+{% endblock%}
