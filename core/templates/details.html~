@@ -45,25 +45,10 @@
 		{% endfor %}
 		<h3> Comenta ai Nerd </h3>
 		{% if user.is_authenticated %}
-		<div style="margin-right: 40%">
-			{% get_comment_form for comic as form %}
-			<table class="table table-hover">
-			  <form action="{% comment_form_target %}" method="post">
-			    {% csrf_token %}
-			    {{ form }}
-			    <tr>
-			      <td colspan="2">
-			        <input type="submit" name="submit" value="Post" class="btn btn-success">
-			        <input type="hidden" name="next" value="{% url details comic.pk %}" />
-			      </td>
-			    </tr>
-			  </form>
-			</table>
-		</div>	
+			{% render_comment_form for comic %}
 		{% else %}
 			{% include 'login_required.html' %}
 		{% endif %}
 	</div>
 </div>
 {% endblock %}
-

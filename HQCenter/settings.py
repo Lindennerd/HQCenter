@@ -121,6 +121,7 @@ INSTALLED_APPS = (
 
 	'core',
 	'accounts',
+    'south',    
 )
 
 LOGIN_URL = '/login/'

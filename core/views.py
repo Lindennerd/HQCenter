@@ -14,6 +14,8 @@ def home(request):
         if request.method =='POST':
             SaveForm = comicForm(request.POST, request.FILES)
             if SaveForm.is_valid():
+                #SaveForm.save(commit=False)
+                SaveForm.owner_id = user.pk
                 SaveForm.save()
                 return redirect('core.views.home')
         context = {
