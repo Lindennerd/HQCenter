@@ -4,7 +4,7 @@ from core.models import comic, publisher, Coment
 class comicForm(forms.ModelForm):
 	class Meta:
 		model= comic
-		exclude=('exclude') 
+		exclude=('exclude', 'owner')
 
 class publisherForm(forms.ModelForm):
 	class Meta:

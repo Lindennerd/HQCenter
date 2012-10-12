@@ -1,4 +1,4 @@
-from core.models import comic, publisher
+from core.models import comic, publisher, Coment
 from django.shortcuts import render, redirect, get_object_or_404
 from core.forms import comicForm, comentForm
 from core.forms import comicForm
@@ -12,10 +12,9 @@ def home(request):
         user = request.user
         form = comicForm()
         if request.method =='POST':
-            SaveForm = comicForm(request.POST, request.FILES)
+            owner = comic(owner = user)
+            SaveForm = comicForm(request.POST, request.FILES, instance=owner)
             if SaveForm.is_valid():
-                #SaveForm.save(commit=False)
-                SaveForm.owner_id = user.pk
                 SaveForm.save()
                 return redirect('core.views.home')
         context = {
@@ -59,21 +58,14 @@ def delete_comic(request, id):
 def details(request, id):
     form = comentForm()
     if request.method == 'POST':
-        formComent = form(request.POST, request.FILES)
+        coment = Coment(user = request.user)
+        formComent = form(request.POST, request.FILES, instance=coment)
         if formComent.is_valid():
             formComent.save()
             return redirect('core.views.home')
     else:
-        image = ""
-        if comic.objects.filter(publisher__name="Marvel"):
-            image = settings.marvel
-        elif comic.objects.filter(publisher__name="DC Comics"):
-            image = settings.dc_comics
-        elif comic.objects.filter(publisher__name="Panini"):
-            image = settings.panini
         context ={ 
             'comic' : get_object_or_404(comic, id=id),
-            'image' : image,
             'form' : form
         }
     return render(request, 'details.html', context)
