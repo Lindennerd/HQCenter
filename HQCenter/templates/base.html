@@ -47,12 +47,12 @@
               </li>
               <li>
                 <a data-toggle="dropdown" class="dropdown-toggle" role="button" id="drop3" href="#">
-                   Menu
+                   Opções de Usuário
                 <b class="caret"></b></a>
 
               <ul aria-labelledby="drop3" role="menu" class="dropdown-menu">
                 {% if user.is_authenticated %}
-                  <li><a href="#" tabindex="-1">Configurações de {{user.username}}</a></li>
+                  <li><a href="{% url user_settings %}" tabindex="-1">Configurações de {{user.username}}</a></li>
                   <li><a href="{%url logout%}" tabindex="-1">Sair</a></li>
                 {%else%}
                   <li><a href="{% url login %}" tabindex="-1">Login</a></li>

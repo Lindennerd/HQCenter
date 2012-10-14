@@ -29,7 +29,7 @@
 				<dt>Descrição</dt>
 				<dd>{{comic.description}}</dd>
 				<dt>Link</dt>
-				<dd><a href="{{comic.link}}">{{comic.link}}</a></dd>
+				<dd><a href="{{comic.link}}">Baixar</a></dd>
 			</dl>
 		</div>
 		<div class="accordion" id="accordion2">
@@ -51,6 +51,10 @@
 		            <hr/>
 		          </div>
 		        </blockquote>
+		        {% empty %}
+		        	<div class="alert alert-error">
+		        	  <strong>Epa!</strong> Sem comentarios a mostrar
+		        	</div>
 		        {% endfor %}
 		      </div>
 		    </div>

@@ -10,6 +10,7 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^userinfo/', include('userinfo.urls'))
 )
 
 urlpatterns += staticfiles_urlpatterns()
