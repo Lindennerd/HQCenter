@@ -7,42 +7,7 @@
 			<div class="page-header">
 				<h3>Imagem do Perfil</h3>
 			</div>
-			<ul class="thumbnails">
-				<li class="span3">
-					<div class="thumbnail">
-			          	<img src="/static/images/no_pic.png" alt="">
-			          <div class="caption">
-			            <h3></h3>
-			            <form class="form-hotizontal">
-				            <input type="text" placeholder="http://algumacoisa.com">
-				            <span class="help-block">Digite a URL para a sua imagem de perfil</span>
-				            <p><a href="#" class="btn btn-success">Salvar</a></p>
-			            </form>
-			          </div>
-			        </div>
-		        	<div class="page-header">
-		        		<h3>Redes Sociais</h3>
-		        		<span class="help-block">Clique nos icones abaixo para se conectar as suas redes sociais</span>
-		        	</div>
-			        <div style="margin-top: 5%">
-			        	<div id="facebook_icon" style="float: left; margin-left: 5%">
-			        		<a href="">
-			        			<img src="/static/images/social/facebook.png">
-			        		</a>
-			        	</div>
-			        	<div id="twitter_icon" style="float: left; margin-left: 15%">
-			        		<a href="">
-			        			<img src="/static/images/social/twitter.png">
-			        		</a>
-			        	</div>
-			        	<div id="email_icon" style="float: left; margin-left: 15%">
-			        		<a href="">
-			        			<img src="/static/images/social/email.png">
-			        		</a>
-			        	</div>
-			        </div>
-				</li>
-			</ul>
+			{% include 'userpic.html'%}
 		</div>
 		<div class="span4">
 			<div class="page-header">
@@ -63,35 +28,7 @@
 			<div class="page-header">
 				<h3>Trocar Senha</h3>
 			</div>
-			<div class="hero-unit">
-			<form method="POST" class="form-hotizontal" action="{% url change_password %}">
-				{% csrf_token %}
-				{% if cngpwd.non_field_errors %}
-				    <div class="alert alert-error">
-				        {{ cngpwd.non_field_errors|join:", " }}
-				    </div>
-				{% endif %}
-				{% for field in cngpwd %}
-				    <div class="control-group{% if field.errors %} error{% endif %}">
-				        <div class="control-label">
-				            {{ field.label_tag }}
-				        </div>
-				        <div class="controls">
-				            {{ field }}
-				            {% if field.errors %}
-				                <span class="help-block">
-				                    {{ field.errors|join:", " }}
-				                </span>
-				            {% endif %}
-				        </div>
-				    </div>
-				{% endfor %}
-				<div class="form-actions">
-					<button type="submit" class="btn btn-success" 
-						style="float: right; margin-left: 2%">Enviar</button>
-				</div>
-			</form>
-		</div>
+			{% include 'change_password.html' %}
 </div>
 
 {% endblock %}

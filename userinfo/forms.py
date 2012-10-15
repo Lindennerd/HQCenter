@@ -1,17 +1,23 @@
 #encoding: utf-8
 from django import forms
-from django.contrib.auth.models import User
+from userinfo.models import User
 from django.core.exceptions import ValidationError
+
 
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        exclude = ('is_staff', 'is_active', 'is_superuser', 'date_joined', 'groups', 'user_permissions', 'password')
+        exclude = ('is_staff', 'is_active', 'is_superuser', 'date_joined', 
+                   'groups', 'user_permissions', 'password', 'profile_image')
+
+class UserPicForm(forms.Form):
+    userpic = forms.CharField(required=False, label='Avatar', widget=forms.TextInput(attrs={'placeholder': 'algumacoisa.com.br'}))
+    
 
 class PasswordReset(forms.Form):
-    oldpassword = forms.CharField(max_length=200, label='Senha Atual', widget=forms.PasswordInput)
-    password1 = forms.CharField(max_length=200, label='Nova Senha', widget=forms.PasswordInput)
-    password2 = forms.CharField(max_length=200, label='Confirme', widget=forms.PasswordInput)
+    oldpassword = forms.CharField(required=False, max_length=200, label='Senha Atual', widget=forms.PasswordInput)
+    password1 = forms.CharField(required=False, max_length=200, label='Nova Senha', widget=forms.PasswordInput)
+    password2 = forms.CharField(required=False, max_length=200, label='Confirme', widget=forms.PasswordInput)
 
     def __init__(self, user, *args, **kwargs):
         self.user = user
@@ -26,5 +32,7 @@ class PasswordReset(forms.Form):
         if self.cleaned_data.get('password1') and self.cleaned_data.get('password2') and self.cleaned_data['password1'] != self.cleaned_data['password2']:
             raise ValidationError('As senhas não são as mesmas')
         return self.cleaned_data['password2']
+
+
     
         
